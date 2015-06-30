@@ -1,5 +1,11 @@
 body {
 	height: 100%;
+	background-color: gainsboro;
+}
+
+h1 {
+	font-family: Arial;
+	text-align: center;
 }
 
 #bigHolder {
@@ -9,15 +15,32 @@ body {
 	margin: 0 auto;
 	top: 50%;
 	margin-top: -150px;
-	border: 1px solid black;
+	left: 50%;
+	margin-left: -250px;
+	border: 1px solid white;
+	border-radius: 5px;
+	background-color: white;
+}
+
+#loginInput {
+	margin-left: 3%;
 }
 
 #firstName {
-
+	width: 30%;
+	height: 40px;
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	padding-left: 10px
 }
 
 #lastName {
-
+	width: 60%;
+	height: 40px;
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	margin-left: 10px;
+	padding-left: 10px
 }
 
 #submitButton {
