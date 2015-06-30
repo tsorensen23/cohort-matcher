@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "server/server.js",
-    "postinstall": "../Gulpfile.js"
+    "start": "server/server.js"
 
   },
   "dependencies": {
