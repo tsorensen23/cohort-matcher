@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-     "start": "node app",
-    "postinstall": "gulp default"
+    "start": "server/server.js"
+
   },
   "dependencies": {
     "body-parser": "~1.12.4",
