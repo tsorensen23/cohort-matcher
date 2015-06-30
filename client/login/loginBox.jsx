@@ -15,11 +15,16 @@ var LoginBox = React.createClass({
 		var first = $('#firstName').val();
 		var last = $('#lastName').val();
 		var name = first+last;
+		var bool = true;
+		$('#firstName').val('');
+		$('#lastName').val('');
 		for(var key in tempLogin){
 			if(key === name){
+				bool = false;
 				console.log("hello");
 			}
 		}
+		if(bool) alert("Incorrect login credentials");
 	},
 
 	render: function()
