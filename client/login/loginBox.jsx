@@ -26,12 +26,16 @@ var LoginBox = React.createClass({
 	{
 		return (
 			<div id="bigHolder">
-				<h1>LOGIN</h1>
-				<div id="loginInput">
-					<FirstName />
-					<LastName />
+				<div id="loginContentHolder">
+					<h1>LOGIN</h1>
+					<div id="loginInput">
+						<FirstName />
+						<LastName />
+					</div>
+					<div id="submitButtonHolder">
+						<SubmitButton handleSubmit={this.handleButtonClick}/>
+					</div>
 				</div>
-				<SubmitButton handleSubmit={this.handleButtonClick}/>
 			</div>
 		);
 	}
