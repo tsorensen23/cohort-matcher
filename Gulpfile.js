@@ -44,4 +44,12 @@ function serve() {
  nodemon({script: './server/server.js'});
 }
 
-gulp.task('default', ['browserify', 'serve']);
+// gulp.task('default', ['browserify', 'serve']);
+
+gulp.task('serveprod', function() {
+  connect.server({
+    root: [your_project_path],
+    port: process.env.PORT || 5000, // localhost:5000
+    livereload: false
+  });
+});
