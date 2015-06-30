@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "Gulpfile.js",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "postinstall": "Gulpfile.js",
+
   },
   "dependencies": {
     "body-parser": "~1.12.4",
