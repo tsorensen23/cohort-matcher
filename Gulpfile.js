@@ -48,8 +48,8 @@ function serve() {
 
 gulp.task('serveprod', function() {
   connect.server({
-    root: [your_project_path],
-    port: process.env.PORT || 5000, // localhost:5000
+    root: ['./server/serve.js'],
+    port: process.env.PORT || 3000, // localhost:5000
     livereload: false
   });
 });
