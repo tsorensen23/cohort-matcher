@@ -16,15 +16,28 @@ var LoginBox = React.createClass({
 		var last = $('#lastName').val();
 		var name = first+last;
 		var bool = true;
-		$('#firstName').val('');
-		$('#lastName').val('');
-		for(var key in tempLogin){
+		if(first === 'admin' && last === 'password'){
+			console.log("admin function");
+			this.props.toggleAdmin(this.props.adminBool);
+			console.log("Login Box", this);
+			this.props.addOne(this.props.pageCounter);
+			return;
+		}
+		if(first !== '' && last !== '') {
+			this.props.addOne(this.props.pageCounter);
+			$('#firstName').val('');
+			$('#lastName').val('');
+			for(var key in tempLogin){
 			if(key === name){
 				bool = false;
 				console.log("hello");
 			}
 		}
-		if(bool) alert("Incorrect login credentials");
+			if(bool) alert("We do not have an existing account in our database for you. Please proceed to complete your profile.");
+			}
+		else {
+			alert("Please do not be coy. Enter your name bro.");
+		}
 	},
 
 	render: function()
@@ -46,4 +59,6 @@ var LoginBox = React.createClass({
 	}
 });
 
-React.render(<LoginBox />, document.body);
+
+module.exports = LoginBox;
+// React.render(<LoginBox />, document.body);

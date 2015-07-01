@@ -6,7 +6,7 @@ var ProfileSubmitButton = require('./profileSubmitButton.jsx');
 
 var ProfileBox = React.createClass({
 	handleClick: function(e) {
-		console.log('hello again');
+		this.props.addOne(this.props.pageCounter);
 	},
 
 	render: function() {
@@ -23,4 +23,5 @@ var ProfileBox = React.createClass({
 	}
 });
 
-React.render(<ProfileBox />, document.body);
+module.exports = ProfileBox;
+// React.render(<ProfileBox />, document.body);
