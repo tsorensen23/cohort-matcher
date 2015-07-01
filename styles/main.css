@@ -1,6 +1,7 @@
 body {
 	height: 100%;
 	background-color: #50C3AE;
+	font-family: Calibri;
 }
 
 h1 {
@@ -64,4 +65,61 @@ h1 {
 	border: 1px solid #F76541;
 	border-radius: 5px;
 	margin-top: 25px;
+}
+
+#outerProfileBox {
+	position: absolute;
+	margin: 0 auto;
+	top: 50%;
+	margin-top: -200px;
+	left: 50%;
+	margin-left: -250px;
+}
+
+#profileBox {
+	height: 400px;
+	width: 500px;
+	overflow: scroll;
+	border: 1px solid #EEEEEE;
+	border-radius: 5px;
+	background-color: #EEEEEE;
+}
+
+#profileName p {
+	font-size: 30px;
+	font-weight: 600;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+#cohortSelector {
+	margin-left: 20px;
+}
+
+#surveyQuestionBox {
+	margin-left: 20px;
+}
+
+#surveyQuestionBox p {
+	font-weight: 600;
+}
+
+#profileSubmitButton {
+	width: 25%;
+	height: 40px;
+	font-family: Arial;
+	font-weight: 500;
+	font-size: 14px;
+	color: white;
+	background-color: #F76541;
+	border: 1px solid #F76541;
+	border-radius: 5px;
+	position: absolute;
+	right: 0;
+	margin-top: 8px;
+}
+
+.question:last-of-type {
+	padding-bottom: 20px;
 }
