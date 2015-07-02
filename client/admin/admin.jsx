@@ -8,12 +8,14 @@ var Admin = React.createClass({
 	render: function() {
 		return (
 			<div id="outerAdmin">
-				<h3>How would you like to match?</h3>
-				<input type="radio" name='matchType'>Random</input>
+				<h2>How would you like to match?</h2>
+				<input type="radio" name='matchType'>  Random</input>
 				<br></br>
-				<input type="radio" name='matchType'>Survey</input>
+				<input type="radio" name='matchType'>  Survey</input>
 				<br></br>
-				<button id="matchButton" type='button' onClick={this.handleClick}>Match!</button>
+				<div id="matchButtonHolder">
+					<button id="matchButton" type='button' onClick={this.handleClick}>Match!</button>
+				</div>
 			</div>
 		);
 	}
