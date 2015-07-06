@@ -31,6 +31,23 @@ var LoginBox = React.createClass({
 			$('#firstName').val('');
 			$('#lastName').val('');
 	
+		$.ajax({
+            method: 'GET',
+            dataType: 'json',
+            url: '/profile',
+            success: function(data) {
+                console.log("data from loginBox success function", data);
+                var profileExists = false;
+                for(var i = 0; i < data.length; i++) {
+                    if(data[i].name === name) {
+                        // profileExists = true;
+                        self.props.addOne();
+                    }
+                }
+                console.log("AJAX add one call", self);
+                console.log("pageCounter in ajax request", self.props.pageCounter);
+            }
+        });
 			if(bool) alert("We do not have an existing account in our database for you. Please proceed to complete your profile.");
 			}
 		else {

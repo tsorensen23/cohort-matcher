@@ -54,7 +54,7 @@ var App = React.createClass({
 		else if(this.state.pageCounter === 1 && this.state.adminBool === 1){
 			return (
 				<div>
-					<Admin />
+					<Admin pageCounter={this.state.pageCounter} />
 				</div>
 			);
 		}

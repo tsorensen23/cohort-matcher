@@ -8,11 +8,17 @@ module.exports = {
 				return res.send(err);
 			}
 			res.send(data);
-		})
+			console.log(data, "from user controller");
+		});
 	},
-	// adminUpdateData: function() {
+	adminUpdateData: function(req, res) {
+		userprofile.find({req.params.id}, function(err, data) {
+			if(err) {
+				return res.send(err);
+			}
 
-	// },
+		}).update({req.body});
+	},
 	postUserProfile: function(req, res) {
 		console.log("userprofile post");
 		UserProfile.create(req.body, function(err, newProfile) {
