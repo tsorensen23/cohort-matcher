@@ -9,30 +9,28 @@ var LoginBox = React.createClass({
 	// },
 
 	handleButtonClick: function(e){
-		var travissorensen = {'survey1': 'travis'};
-		var victorialeon = {'survey1': 'victoria'};
-		var tempLogin = {travissorensen, victorialeon};
+		var self = this;
+		// var travissorensen = {'survey1': 'travis'};
+		// var victorialeon = {'survey1': 'victoria'};
+		// var tempLogin = {travissorensen, victorialeon};
 		var first = $('#firstName').val();
 		var last = $('#lastName').val();
-		var name = first+last;
+		var name = first+ " " + last;
 		var bool = true;
 		if(first === 'admin' && last === 'password'){
-			console.log("admin function");
-			this.props.toggleAdmin(this.props.adminBool);
-			console.log("Login Box", this);
-			this.props.addOne(this.props.pageCounter);
+			this.props.toggleAdmin();
+			this.props.addOne();
 			return;
 		}
 		if(first !== '' && last !== '') {
-			this.props.addOne(this.props.pageCounter);
+			console.log(this.props.pageCounter, "this is the page counter");
+			// console.log("first addOne call", this);
+			this.props.addOne();
+			this.props.setName(name);
+			// console.log("before AJAX", self.props.pageCounter);
 			$('#firstName').val('');
 			$('#lastName').val('');
-			for(var key in tempLogin){
-			if(key === name){
-				bool = false;
-				console.log("hello");
-			}
-		}
+	
 			if(bool) alert("We do not have an existing account in our database for you. Please proceed to complete your profile.");
 			}
 		else {
