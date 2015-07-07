@@ -1,4 +1,5 @@
 var UserProfile = require('./userModel.js');
+var UserProfileAfter = require('./userModelAfter.js');
 
 module.exports = {
 	//use getData function for admin to initiate matching, and to check if profile already exists, and for match
@@ -8,22 +9,32 @@ module.exports = {
 				return res.send(err);
 			}
 			res.send(data);
-			console.log(data, "from user controller");
 		});
 	},
-	adminUpdateData: function(req, res) {
-		userprofile.find({req.params.id}, function(err, data) {
+
+	getDataAfter: function(req,res) {
+		UserProfileAfter.find({}, function(err, data) {
 			if(err) {
 				return res.send(err);
 			}
+			res.send(data);
+		});
+	},
+	adminUpdateData: function(req, res) {
+		UserProfile.update({_id:req.params.id}, {$set:{matchAvailable: "no"}});
 
-		}).update({req.body});
 	},
 	postUserProfile: function(req, res) {
-		console.log("userprofile post");
 		UserProfile.create(req.body, function(err, newProfile) {
 			if(err) {
-				console.log(err, "string");
+				return res.send(err);
+			}
+			res.send(newProfile);
+		});
+	},
+	postUserProfileAfter: function(req, res) {
+		UserProfileAfter.create(req.body, function(err, newProfile) {
+			if(err) {
 				return res.send(err);
 			}
 			res.send(newProfile);

@@ -10,4 +10,6 @@ app.use(bodyParser.json());
 app.get('/profile', userController.getData);
 app.post('/profile', userController.postUserProfile);
 app.put('/profile/:id', userController.adminUpdateData);
+app.post('/profileAfter', userController.postUserProfileAfter);
+app.get('/profileAfter', userController.getDataAfter);
 app.listen(process.env.PORT || 3000);

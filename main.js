@@ -14,7 +14,8 @@ var App = React.createClass({
 			SQ1: null,
 			SQ2: null,
 			SQ3: null,
-			matchAvailable: null
+			matchAvailable: null,
+			match: null
 		}
 	},
 
@@ -28,6 +29,10 @@ var App = React.createClass({
 
 	addOne: function() {
 		this.setState({pageCounter: ++this.state.pageCounter});
+	},
+
+	updateMatch: function(yourMatch) {
+		this.setState({match:yourMatch});
 	},
 
 	chooseCohort: function(cohortChoice) {
@@ -69,14 +74,14 @@ var App = React.createClass({
 		else if(this.state.pageCounter === 2){
 			return (
 				<div>
-					<NoMatch name={this.state.name} cohort={this.state.cohort} SQ1={this.state.SQ1} SQ2={this.state.SQ2} SQ3={this.state.SQ3} />
+					<NoMatch match={this.state.match} updateMatch={this.updateMatch.bind(this)} pageCounter={this.state.pageCounter} addOne={this.addOne.bind(this)} name={this.state.name} cohort={this.state.cohort} SQ1={this.state.SQ1} SQ2={this.state.SQ2} SQ3={this.state.SQ3} />
 				</div>
 			);
 		}
 		else if(this.state.pageCounter === 3){
 			return(
 				<div>
-					<Match />
+					<Match match={this.state.match} />
 				</div>
 			);
 		}

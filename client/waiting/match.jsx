@@ -4,7 +4,7 @@ var Match = React.createClass({
 	render: function() {
 		return (
 			<div id="outerMatch">
-				<h3>Congrats! You have been matched with!</h3>
+				<h3>Congrats! You have been matched with {this.props.match}!</h3>
 			</div>
 		);
 	}

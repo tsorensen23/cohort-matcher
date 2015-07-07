@@ -2,7 +2,8 @@ var React = require('react');
 
 var Admin = React.createClass({
 	handleClick: function(){
-		var updatedData;
+		var updatedData = [];
+		var ajaxBool = true;
 		var matchType = document.getElementsByName('matchType');
 		var matchMethod;
 		for(var b = 0; b < matchType.length; b++) {
@@ -15,7 +16,6 @@ var Admin = React.createClass({
             dataType: 'json',
             url: '/profile',
             success: function(data) {
-            	updatedData = data;
                 var srArray = [];
                 var jrArray = [];
                 for(var i = 0; i < data.length; i++) {
@@ -26,6 +26,8 @@ var Admin = React.createClass({
                 		jrArray.push(data[i]);
                 	}
                 }
+                var matchesRemaining = srArray.length;
+
                 //random matching
                 if(matchMethod === 'random') {
                 	console.log('random');
@@ -36,7 +38,11 @@ var Admin = React.createClass({
 	                		if(jrArray[matchIndex].matchAvailable === null) {
 	                			srArray[i].matchAvailable = jrArray[matchIndex].name;
 	                			jrArray[matchIndex].matchAvailable = srArray[i].name;
+	                			updatedData.push(srArray[i]);
+	                			updatedData.push(jrArray[matchIndex]);
+	                			console.log('updatedData before for loop', updatedData);
 	                			bool = false;
+	                			matchesRemaining--;
 	                		}
 	                	}
                 	}
@@ -79,12 +85,57 @@ var Admin = React.createClass({
 	                	}
 	               		srArray[i].matchAvailable = jrArray[bestMatchIndex].name;
 	               		jrArray[bestMatchIndex].matchAvailable = srArray[i].name;
+	               		updatedData.push(srArray[i]);
+            			updatedData.push(jrArray[bestMatchIndex]);
+            			console.log('updatedData', updatedData);
+            			matchesRemaining--;
 	                }
                 }
                 alert('Thanks for matching!');
+                updatedData = data;
+                ajaxBool = false;
+                if(matchesRemaining <= 0) {
+                	updateMatches();
+                }
             }
-
         });
+	var updateMatches = function() {
+		for(var d = 0; d < updatedData.length; d++) {
+			var matchObject = {name: updatedData[d].name, cohort: updatedData[d].cohort, SQ1: updatedData[d].SQ1, SQ2: updatedData[d].SQ2, SQ3:updatedData[d].SQ3, matchAvailable:updatedData[d].matchAvailable };
+			console.log(matchObject);
+
+	        $.ajax({
+	            type: 'POST',
+	            contentType: 'application/json',
+	            url: '/profileAfter',
+	            data: JSON.stringify(matchObject),
+	            success: function(data) {
+	               console.log(data);
+	               console.log("post request successful");
+	            }
+	        });
+	}
+
+
+
+
+
+		// 	var matchObject = { matchAvailable: updatedData[d].matchAvailable };
+		// 	var matchID = updatedData[d]._id;
+		// 	console.log(matchID);
+		// 	$.ajax({
+	 //            type: 'PUT',
+	 //            contentType: 'application/json',
+	 //            url: '/profile/'+matchID,
+	 //            data: JSON.stringify(matchObject),
+	 //            success: function(data) {
+	 //               console.log(data);
+	 //               console.log("post request successful");
+	 //            }
+	 //        });
+		// }
+		};
+
 	},
 
 	render: function() {
