@@ -14,8 +14,11 @@ var App = React.createClass({
 			SQ1: null,
 			SQ2: null,
 			SQ3: null,
-			matchAvailable: null,
-			match: null
+			SQ4: null,
+			SQ5: null,
+			SQ6: null,
+			SQ7: null,			
+			matchAvailable: null
 		}
 	},
 
@@ -32,7 +35,8 @@ var App = React.createClass({
 	},
 
 	updateMatch: function(yourMatch) {
-		this.setState({match:yourMatch});
+		console.log("update match function");
+		this.setState({matchAvailable:yourMatch});
 	},
 
 	chooseCohort: function(cohortChoice) {
@@ -46,6 +50,18 @@ var App = React.createClass({
 	},
 	survey3QuestionsChoice: function(survey3Choice) {
 		this.setState({SQ3: survey3Choice});
+	},
+	survey4QuestionsChoice: function(survey4Choice) {
+		this.setState({SQ4: survey4Choice});
+	},
+	survey5QuestionsChoice: function(survey5Choice) {
+		this.setState({SQ5: survey5Choice});
+	},
+	survey6QuestionsChoice: function(survey6Choice) {
+		this.setState({SQ6: survey6Choice});
+	},
+	survey7QuestionsChoice: function(survey7Choice) {
+		this.setState({SQ7: survey7Choice});
 	},
 
 	render: function(){
@@ -66,7 +82,7 @@ var App = React.createClass({
 		else if(this.state.pageCounter === 1 && this.state.adminBool === 0){
 			return (
 				<div>
-					<ProfileBox pageCounter={this.state.pageCounter} addOne={this.addOne.bind(this)} name={this.state.name} cohort={this.state.cohort} SQ1={this.state.SQ1} SQ2={this.state.SQ2} SQ3={this.state.SQ3} chooseCohort={this.chooseCohort.bind(this)} survey1QuestionsChoice={this.survey1QuestionsChoice.bind(this)} survey2QuestionsChoice={this.survey2QuestionsChoice.bind(this)} survey3QuestionsChoice={this.survey3QuestionsChoice.bind(this)}/>
+					<ProfileBox pageCounter={this.state.pageCounter} addOne={this.addOne.bind(this)} name={this.state.name} cohort={this.state.cohort} SQ1={this.state.SQ1} SQ2={this.state.SQ2} SQ3={this.state.SQ3} chooseCohort={this.chooseCohort.bind(this)} survey1QuestionsChoice={this.survey1QuestionsChoice.bind(this)} survey2QuestionsChoice={this.survey2QuestionsChoice.bind(this)} survey3QuestionsChoice={this.survey3QuestionsChoice.bind(this)} SQ4={this.state.SQ4} S5={this.state.SQ5} SQ6={this.state.SQ6} SQ7={this.state.SQ7} survey4QuestionsChoice={this.survey4QuestionsChoice.bind(this)} survey5QuestionsChoice={this.survey5QuestionsChoice.bind(this)} survey6QuestionsChoice={this.survey6QuestionsChoice.bind(this)} survey7QuestionsChoice={this.survey7QuestionsChoice.bind(this)} />
 				</div>
 			);
 		}
@@ -74,14 +90,14 @@ var App = React.createClass({
 		else if(this.state.pageCounter === 2){
 			return (
 				<div>
-					<NoMatch match={this.state.match} updateMatch={this.updateMatch.bind(this)} pageCounter={this.state.pageCounter} addOne={this.addOne.bind(this)} name={this.state.name} cohort={this.state.cohort} SQ1={this.state.SQ1} SQ2={this.state.SQ2} SQ3={this.state.SQ3} />
+					<NoMatch match={this.state.matchAvailable} updateMatch={this.updateMatch.bind(this)} pageCounter={this.state.pageCounter} addOne={this.addOne.bind(this)} name={this.state.name} cohort={this.state.cohort} SQ1={this.state.SQ1} SQ2={this.state.SQ2} SQ3={this.state.SQ3} SQ4={this.state.SQ4} SQ5={this.state.SQ5} SQ6={this.state.SQ6} SQ7={this.state.SQ7} />
 				</div>
 			);
 		}
 		else if(this.state.pageCounter === 3){
 			return(
 				<div>
-					<Match match={this.state.match} />
+					<Match match={this.state.matchAvailable} pageCounter={this.state.pageCounter}/>
 				</div>
 			);
 		}

@@ -8,14 +8,11 @@ var NoMatch = React.createClass({
             dataType: 'json',
             url: '/profileAfter',
             success: function(data) {
-            	console.log(data, "this sis the data");
              	for(var i = 0; i < data.length; i++) {
                     if(data[i].name === self.props.name) {
                     	match = data[i].matchAvailable;
                     	self.props.addOne();
                     	self.props.updateMatch(match);
-                    	console.log("MY MATCH IS ", data[i].matchAvailable);
-                    	console.log("MY NAME IS ", self.props.name);
 
             		}
             	}
@@ -23,8 +20,9 @@ var NoMatch = React.createClass({
      	});
 	},
 	postRequest: function() {
-		var messageObject = {name: this.props.name, cohort: this.props.cohort, SQ1: this.props.SQ1, SQ2: this.props.SQ2, SQ3:this.props.SQ3, matchAvailable: null };
-		console.log(messageObject);
+        $('#ajaxSubmitButton').animate({'opacity': "0.0"},1000);
+        $('#ajaxSubmitButton').animate({'margin-top': "400px"},10);
+		var messageObject = {name: this.props.name, cohort: this.props.cohort, SQ1: this.props.SQ1, SQ2: this.props.SQ2, SQ3:this.props.SQ3, SQ4:this.props.SQ4, SQ5:this.props.SQ5, SQ6:this.props.SQ6, SQ7:this.props.SQ7, matchAvailable: null };
 
         $.ajax({
             type: 'POST',
@@ -32,15 +30,15 @@ var NoMatch = React.createClass({
             url: '/profile',
             data: JSON.stringify(messageObject),
             success: function(data) {
-               console.log(data);
-               console.log("post request successful");
             }
         });
 	},
 
 	componentDidMount: function() {
+		var self = this;
 		this.refreshMessages();
-		setInterval(this.refreshMessages, 2000);
+		setInterval(self.refreshMessages, 2000);
+		
 	},
 
 	render: function() {

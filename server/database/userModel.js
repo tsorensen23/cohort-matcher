@@ -7,6 +7,10 @@ var userSchema = new Schema({
 	SQ1: {type: String},
 	SQ2: {type: String},
 	SQ3: {type: String},
+	SQ4: {type: String},
+	SQ5: {type: String},
+	SQ6: {type: String},
+	SQ7: {type: String},
 	matchAvailable: {type: String, default: null}
 });
 

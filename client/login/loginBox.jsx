@@ -16,7 +16,7 @@ var LoginBox = React.createClass({
 		var first = $('#firstName').val();
 		var last = $('#lastName').val();
 		var name = first+ " " + last;
-		var bool = true;
+		var profileExists = false;
 		if(first === 'admin' && last === 'password'){
 			this.props.toggleAdmin();
 			this.props.addOne();
@@ -31,25 +31,23 @@ var LoginBox = React.createClass({
 			$('#firstName').val('');
 			$('#lastName').val('');
 	
-		$.ajax({
-            method: 'GET',
-            dataType: 'json',
-            url: '/profile',
-            success: function(data) {
-                console.log("data from loginBox success function", data);
-                var profileExists = false;
-                for(var i = 0; i < data.length; i++) {
-                    if(data[i].name === name) {
-                        // profileExists = true;
-                        self.props.addOne();
-                    }
-                }
-                console.log("AJAX add one call", self);
-                console.log("pageCounter in ajax request", self.props.pageCounter);
-            }
-        });
-			if(bool) alert("We do not have an existing account in our database for you. Please proceed to complete your profile.");
-			}
+			$.ajax({
+	            method: 'GET',
+	            dataType: 'json',
+	            url: '/profile',
+	            success: function(data) {
+	                for(var i = 0; i < data.length; i++) {
+	                    if(data[i].name === name) {
+	                        profileExists = true;
+	                        self.props.addOne();
+	                    }
+	                }
+	                if(!profileExists) {
+						alert("We do not have an existing account in our database for you. Please proceed to complete your profile.");
+					}
+	            }
+	        });
+		}
 		else {
 			alert("Please do not be coy. Enter your name bro.");
 		}
